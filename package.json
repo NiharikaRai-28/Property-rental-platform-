@@ -1,0 +1,23 @@
+{
+  "name": "property-rental-platform",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "nodemon server/server.js",
+    "client": "vite",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "lucide-react": "^0.221.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "concurrently": "^9.2.1",
+    "nodemon": "^2.0.22",
+    "vite": "^4.3.0"
+  }
+}
