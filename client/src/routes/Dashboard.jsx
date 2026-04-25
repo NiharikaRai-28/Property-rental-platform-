@@ -118,7 +118,7 @@ export default function Dashboard() {
                             <UserCircle className="w-4 h-4" /> User Control Center
                         </div>
                         <h1 className="text-5xl font-black text-slate-900 tracking-tight uppercase">
-                            Dashboard <span className="text-orange-500 underline decoration-slate-200 underline-offset-8 font-normal lowercase italic">/ {user.name || 'Member'}</span>
+                            Dashboard
                         </h1>
                     </div>
                     <div className="flex gap-3">

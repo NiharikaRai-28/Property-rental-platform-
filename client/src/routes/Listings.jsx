@@ -44,12 +44,12 @@ export default function Listings() {
             {/* Header / Banner - Elegant & Dark */}
             <section className="relative h-[450px] flex items-center justify-center pt-24 overflow-hidden shadow-2xl">
                 <img 
-                    src="https://images.unsplash.com/photo-1448630360428-65456885c650?auto=format&fit=crop&w=1920&q=80" 
+                    src="/assets/listings-hero.png" 
                     alt="Listings" 
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover z-0"
                 />
-                <div className="absolute inset-0 bg-slate-950/70"></div>
-                <div className="relative z-10 text-center px-4 max-w-4xl">
+                <div className="absolute inset-0 bg-slate-950/70 z-10"></div>
+                <div className="relative z-20 text-center px-4 max-w-4xl">
                     <span className="text-orange-500 font-bold uppercase tracking-[0.5em] text-[10px] mb-6 block">Global Inventory</span>
                     <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-4 uppercase">Archive.</h1>
                     <div className="flex items-center justify-center gap-3 text-white/50 font-bold uppercase tracking-widest text-[9px]">

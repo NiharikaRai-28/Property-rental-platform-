@@ -1,73 +1,75 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { getUser, logout } from '../utils/auth'
-import { Home, LogOut, LayoutDashboard, PlusCircle, UserCircle } from 'lucide-react'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Home, Search, PlusCircle, LayoutDashboard, User, Info, LogOut, Heart, UserCircle } from 'lucide-react';
 
 export default function Navbar() {
-  const user = getUser()
-  const nav = useNavigate()
+    const navigate = useNavigate();
+    const isLoggedIn = !!localStorage.getItem('token');
+    
+    let user = {};
+    try {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser && storedUser !== 'undefined') {
+            user = JSON.parse(storedUser);
+        }
+    } catch (e) {
+        console.error('Failed to parse user from localStorage', e);
+    }
 
-  return (
-    <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100">
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-8">
-          <Link to="/" className="text-2xl font-black tracking-tighter flex items-center gap-2 text-primary">
-            <div className="bg-accent p-1.5 rounded-lg text-white">
-              <Home size={22} />
-            </div>
-            RENTIFY
-          </Link>
-        </div>
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        window.location.href = '/auth';
+    };
 
-        <div className="flex items-center gap-6">
-          <div className="hidden md:flex items-center gap-6 mr-4 border-r border-slate-100 pr-6">
-            <Link to="/listings" className="font-bold text-slate-600 hover:text-accent transition-colors text-sm uppercase tracking-tighter">Listings</Link>
-            <Link to="/about" className="font-bold text-slate-600 hover:text-accent transition-colors text-sm uppercase tracking-tighter">About</Link>
-            <Link to="/dashboard" className="font-bold text-slate-600 hover:text-accent transition-colors text-sm uppercase tracking-tighter">Bookings</Link>
-          </div>
-
-          <div className="flex items-center gap-4">
-          {user ? (
-            <div className="flex items-center gap-4">
-              <Link to="/add" className="hidden sm:flex items-center gap-2 btn-primary !py-2 !px-4">
-                <PlusCircle size={18} />
-                List Property
-              </Link>
-              <div className="h-8 w-[1px] bg-slate-200"></div>
-              <div className="flex items-center gap-3 group cursor-pointer relative">
-                <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center text-accent">
-                  <UserCircle size={24} />
+    return (
+        <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-slate-100 px-6 h-20 flex items-center justify-between">
+            <Link to="/" className="flex items-center gap-3">
+                <div className="w-11 h-11 bg-slate-900 rounded-[1.2rem] flex items-center justify-center shadow-lg shadow-slate-900/10">
+                    <Home className="text-white w-5 h-5" />
                 </div>
-                <div className="hidden lg:block">
-                  <div className="text-xs text-slate-400 font-bold uppercase tracking-wider">Account</div>
-                  <div className="text-sm font-bold text-primary truncate max-w-[100px]">{user.email || 'User'}</div>
+                <div className="flex flex-col -space-y-1">
+                    <span className="text-2xl font-black text-slate-900 tracking-tighter uppercase font-outfit">Veedoo</span>
+                    <span className="text-[9px] font-bold text-orange-600 tracking-[0.3em] uppercase">Ecosystem</span>
                 </div>
-                
-                {/* Minimal Dropdown Simulation with CSS Hover */}
-                <div className="absolute top-12 right-0 w-48 bg-white rounded-xl shadow-xl border border-slate-100 p-2 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all transform translate-y-2 group-hover:translate-y-0">
-                  <Link to="/dashboard" className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-50 text-sm font-semibold">
-                    <LayoutDashboard size={16} />
-                    Dashboard
-                  </Link>
-                  <button 
-                    onClick={() => { logout(); nav('/auth') }}
-                    className="w-full flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-red-50 text-red-600 text-sm font-semibold mt-1"
-                  >
-                    <LogOut size={16} />
-                    Logout
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <Link to="/auth" className="flex items-center gap-2 font-bold text-primary hover:text-accent transition-colors">
-              <UserCircle size={20} />
-              Login / Sign Up
             </Link>
-          )}
-        </div>
-      </div>
-    </div>
-  </nav>
-)
+
+            <div className="hidden lg:flex items-center gap-10 text-[11px] font-bold text-slate-500 uppercase tracking-widest">
+                <Link to="/" className="hover:text-slate-900 transition-colors">Home</Link>
+                <Link to="/about" className="hover:text-slate-900 transition-colors">About</Link>
+                <Link to="/listings" className="hover:text-slate-900 transition-colors">Listing</Link>
+                {isLoggedIn && (
+                    <>
+                        <Link to="/dashboard" className="hover:text-orange-600 text-orange-600 transition-colors border-b-2 border-orange-500/0 hover:border-orange-500 pb-1">My Bookings</Link>
+                        <Link to="/add" className="hover:text-slate-900 transition-all flex items-center gap-1.5 bg-slate-50 px-4 py-2 rounded-full border border-slate-100">
+                            <PlusCircle className="w-3.5 h-3.5" />
+                            Add Property
+                        </Link>
+                    </>
+                )}
+            </div>
+
+            <div className="flex items-center gap-4">
+                {isLoggedIn ? (
+                    <div className="flex items-center gap-2 bg-slate-50 p-1.5 rounded-2xl border border-slate-100 shadow-inner">
+                        <Link to="/dashboard" className="h-9 px-4 flex items-center gap-2 text-slate-500 hover:text-slate-900 hover:bg-white rounded-xl transition-all font-bold text-[10px] uppercase">
+                            <UserCircle className="w-4 h-4" />
+                            {user.name?.split(' ')[0] || 'User'}
+                        </Link>
+                        <button 
+                            onClick={handleLogout}
+                            className="w-9 h-9 flex items-center justify-center text-slate-400 hover:text-red-600 hover:bg-white rounded-xl transition-all"
+                        >
+                            <LogOut className="w-4 h-4" />
+                        </button>
+                    </div>
+                ) : (
+                    <Link to="/auth" className="flex items-center gap-3 bg-slate-900 text-white px-8 py-3.5 rounded-[1.2rem] font-bold text-xs hover:bg-orange-600 transition-all shadow-xl shadow-slate-900/10 active:scale-95 uppercase tracking-widest">
+                        <User className="w-4 h-4" />
+                        Sign In / Join
+                    </Link>
+                )}
+            </div>
+        </nav>
+    );
 }

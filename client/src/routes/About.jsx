@@ -14,12 +14,12 @@ export default function About() {
             {/* Hero Section - Balanced & Clean */}
             <section className="relative h-[60vh] flex items-center justify-center pt-20 overflow-hidden">
                 <img 
-                    src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1920&q=80" 
+                    src="/assets/about-hero.png" 
                     alt="Luxury Home" 
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover z-0"
                 />
-                <div className="absolute inset-0 bg-slate-950/20"></div>
-                <div className="relative z-10 text-center px-4 w-full max-w-5xl">
+                <div className="absolute inset-0 bg-slate-950/20 z-10"></div>
+                <div className="relative z-20 text-center px-4 w-full max-w-5xl">
                     <span className="bg-orange-600 text-white px-6 py-2.5 rounded-full font-black uppercase tracking-[0.4em] text-[10px] mb-8 inline-block shadow-2xl">The Veedoo Manifesto</span>
                     <h1 className="text-6xl md:text-8xl font-black text-white leading-none tracking-tighter uppercase drop-shadow-2xl">
                         Our <span className="text-orange-500">Identity.</span>
@@ -80,7 +80,7 @@ export default function About() {
             </section>
 
             {/* Standards Section */}
-            <section className="py-32 max-w-7xl mx-auto px-6">
+            <section className="pt-32 pb-12 max-w-7xl mx-auto px-6">
                 <div className="bg-white rounded-[5rem] p-24 shadow-xl border border-slate-100 grid lg:grid-cols-3 gap-20 items-center">
                     <div className="lg:col-span-2">
                         <span className="text-orange-600 font-bold uppercase tracking-widest text-[11px] mb-6 block">Veedoo Standards</span>
@@ -114,8 +114,7 @@ export default function About() {
             </section>
 
              {/* Footer - Elegant & Minimal */}
-            <footer className="bg-slate-950 text-white pt-40 pb-12 overflow-hidden relative">
-                <div className="absolute top-0 left-0 w-full h-[180px] bg-white rounded-b-[120px]"></div>
+            <footer className="bg-slate-950 text-white pt-24 pb-12 overflow-hidden relative">
                  <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-4 gap-20 mb-24 relative z-10">
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-4 mb-10">

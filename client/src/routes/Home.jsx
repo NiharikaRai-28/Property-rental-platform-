@@ -61,15 +61,15 @@ export default function Home() {
     return (
         <div className="bg-[#F8FAFC]">
             {/* Hero Section */}
-            <section className="relative h-[100vh] flex items-center justify-center pt-20">
+            <section className="relative h-[100vh] flex items-center justify-center pt-20 overflow-hidden">
                 <img 
-                    src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=80" 
+                    src="/assets/hero.png" 
                     alt="Luxury Home" 
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover z-0"
                 />
-                <div className="absolute inset-0 bg-slate-950/40"></div>
+                <div className="absolute inset-0 bg-slate-950/40 z-10"></div>
                 
-                <div className="relative z-10 w-full max-w-7xl px-6">
+                <div className="relative z-20 w-full max-w-7xl px-6">
                     <div className="max-w-3xl mb-16">
                         <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter leading-[0.95] mb-8 uppercase">
                             Modern <br/>Living <span className="text-orange-500">Refined.</span>
@@ -259,19 +259,19 @@ export default function Home() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-32 max-w-7xl mx-auto px-6">
-                <div className="bg-orange-600 rounded-[5rem] p-24 text-center relative overflow-hidden shadow-2xl shadow-orange-600/20">
+            <section className="pt-20 pb-12 max-w-7xl mx-auto px-6">
+                <div className="bg-orange-600 rounded-[4rem] p-16 text-center relative overflow-hidden shadow-2xl shadow-orange-600/20">
                     <div className="relative z-10">
-                        <span className="text-white/80 font-bold uppercase tracking-[0.5em] text-[10px] mb-8 block font-outfit">Priority Access</span>
-                        <h2 className="text-6xl md:text-8xl font-black text-white tracking-tighter uppercase mb-14 leading-none">Secure Your <br/>Premium Stay.</h2>
-                        <div className="flex flex-wrap justify-center gap-6">
+                        <span className="text-white/80 font-bold uppercase tracking-[0.5em] text-[10px] mb-6 block font-outfit">Priority Access</span>
+                        <h2 className="text-4xl md:text-6xl font-black text-white tracking-tighter uppercase mb-10 leading-tight">Secure Your <br/>Premium Stay.</h2>
+                        <div className="flex flex-wrap justify-center gap-4">
                             <button 
                                 onClick={() => navigate('/listings')}
-                                className="bg-white text-orange-600 px-16 py-8 rounded-[2.5rem] font-black text-xl hover:bg-slate-900 hover:text-white transition-all active:scale-[0.98] flex items-center gap-4 shadow-xl shadow-white/10"
+                                className="bg-white text-orange-600 px-10 py-5 rounded-[2rem] font-black text-lg hover:bg-slate-900 hover:text-white transition-all active:scale-[0.98] flex items-center gap-3 shadow-xl shadow-white/10"
                             >
-                                Book Now <ArrowUpRight className="w-8 h-8" />
+                                Book Now <ArrowUpRight className="w-6 h-6" />
                             </button>
-                            <button className="bg-slate-950 text-white px-16 py-8 rounded-[2.5rem] font-black text-xl border border-white/10 hover:bg-white hover:text-slate-950 transition-all active:scale-[0.98]">
+                            <button className="bg-slate-950 text-white px-10 py-5 rounded-[2rem] font-black text-lg border border-white/10 hover:bg-white hover:text-slate-950 transition-all active:scale-[0.98]">
                                 Contact Expert
                             </button>
                         </div>
@@ -280,8 +280,7 @@ export default function Home() {
             </section>
 
             {/* Footer */}
-            <footer className="bg-slate-950 text-white pt-40 pb-12 overflow-hidden relative">
-                <div className="absolute top-0 left-0 w-full h-[180px] bg-white rounded-b-[120px]"></div>
+            <footer className="bg-slate-950 text-white pt-24 pb-12 overflow-hidden relative">
                  <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-4 gap-20 mb-24 relative z-10">
                     <div className="lg:col-span-2">
                         <div className="flex items-center gap-4 mb-10">

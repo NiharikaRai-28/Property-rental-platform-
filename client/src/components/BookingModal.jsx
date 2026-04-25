@@ -1,42 +1,24 @@
 import React, { useState } from 'react'
-import { createBooking } from '../utils/api'
-import { getUser } from '../utils/auth'
+import { bookProperty } from '../utils/storage'
 
 export default function BookingModal({ property, onClose }){
-  const user = getUser()
   const [checkIn, setCheckIn] = useState('')
   const [checkOut, setCheckOut] = useState('')
   const [guests, setGuests] = useState(1)
   const [error, setError] = useState(null)
 
-  async function handleConfirm(){
-    if (!user) { setError('Please login to book'); return }
+  function handleConfirm(){
     if (!checkIn || !checkOut) { setError('Please select dates'); return }
     if (new Date(checkOut) <= new Date(checkIn)) { setError('Check-out must be after check-in'); return }
 
-    try {
-      const booking = await createBooking({ 
-        propertyId: property._id || property.id, 
-        checkIn, 
-        checkOut, 
-        guests 
-      })
-      
-      if (booking._id || booking.id) {
-        onClose()
-        alert(`Booking confirmed! ID: ${booking._id || booking.id}`)
-        window.location.href = '/dashboard' // Redirect to see it
-      } else {
-        setError(booking.message || 'Booking failed')
-      }
-    } catch (err) {
-      setError('Booking failed. Please try again.')
-    }
+    const booking = bookProperty({ propertyId: property.id, checkIn, checkOut, guests })
+    onClose()
+    alert(`Booking confirmed: ${booking.id}`)
   }
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-[100]">
-      <div className="bg-white rounded-[2rem] p-8 max-w-md w-full shadow-2xl transition-all scale-100 border border-slate-100">
+    <div className="fixed inset-0 bg-black/40 flex items-center justify-center">
+      <div className="bg-lightblue rounded-lg p-6 max-w-md w-full">
         <h3 className="text-lg font-semibold">Book {property.title}</h3>
         <div className="mt-3 grid grid-cols-2 gap-2">
           <input type="date" value={checkIn} onChange={(e)=>setCheckIn(e.target.value)} className="p-2 border rounded" />
